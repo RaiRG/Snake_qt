@@ -25,6 +25,7 @@ public:
   void MoveUp();
   void MoveRight();
   void MoveLeft();
+  bool Contains(Point& point);
 };
 
 #endif  // SNAKE_H

@@ -2,19 +2,21 @@
 #define POINTLIST_H
 
 #include "point.h"
-#include "pointlistitem.h"
+#include "item.h"
 
 class PointList
 {
-  PointListItem* head;
-  PointListItem* tail;
+  Item head;
+  Item tail;
   void DeleteTail();
+  int lenght;
 
 public:
   PointList(Point headPoint);
   int Length();
   void AddInTop(Point newHead);
   void UpdatePoints(Point newHeadLocation);
+  int getLength();
 };
 
 #endif  // POINTLIST_H
