@@ -2,7 +2,7 @@
 #define SNAKE_H
 
 #include "point.h"
-#include "pointlist.h"
+#include <list>
 
 enum class Direction
 {
@@ -16,7 +16,7 @@ class Snake
 {
 public:
   Snake(Point headLocation);
-  PointList BodyWithHead;
+  std::list<Point> BodyWithHead;
   Point HeadLocation;
   bool IsFed;
   int Step;

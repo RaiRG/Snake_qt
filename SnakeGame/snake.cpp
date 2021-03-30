@@ -1,7 +1,8 @@
 #include "snake.h"
-
-Snake::Snake(Point headLocation) : BodyWithHead(headLocation), HeadLocation(headLocation)
+#include "listexensions.h"
+Snake::Snake(Point headLocation) : HeadLocation(headLocation)
 {
+  this->BodyWithHead.push_front(headLocation);
   this->IsFed = false;
   this->Direction = Direction::Up;
   this->Step = 1;
@@ -14,12 +15,12 @@ void Snake::MoveDown()
   if (IsFed)
   {
     // то она должна вырасти и снова быть голодной.
-    BodyWithHead.AddInTop(HeadLocation);
+    BodyWithHead.push_front(HeadLocation);
     IsFed = false;
   }
   else
   {
-    BodyWithHead.UpdatePoints(HeadLocation);
+    SlideFromStartElement(BodyWithHead, HeadLocation);
   }
 
   Direction = Direction::Down;
@@ -32,12 +33,12 @@ void Snake::MoveUp()
   if (IsFed)
   {
     // то она должна вырасти и снова быть голодной.
-    BodyWithHead.AddInTop(HeadLocation);
+    BodyWithHead.push_front(HeadLocation);
     IsFed = false;
   }
   else
   {
-    BodyWithHead.UpdatePoints(HeadLocation);
+    SlideFromStartElement(BodyWithHead, HeadLocation);
   }
 
   Direction = Direction::Up;
@@ -50,12 +51,12 @@ void Snake::MoveRight()
   if (IsFed)
   {
     // то она должна вырасти и снова быть голодной.
-    BodyWithHead.AddInTop(HeadLocation);
+    BodyWithHead.push_front(HeadLocation);
     IsFed = false;
   }
   else
   {
-    BodyWithHead.UpdatePoints(HeadLocation);
+    SlideFromStartElement(BodyWithHead, HeadLocation);
   }
 
   Direction = Direction::Right;
@@ -67,12 +68,12 @@ void Snake::MoveLeft()
   if (IsFed)
   {
     // то она должна вырасти и снова быть голодной.
-    BodyWithHead.AddInTop(HeadLocation);
+    BodyWithHead.push_front(HeadLocation);
     IsFed = false;
   }
   else
   {
-    BodyWithHead.UpdatePoints(HeadLocation);
+    SlideFromStartElement(BodyWithHead, HeadLocation);
   }
 
   Direction = Direction::Left;
@@ -80,14 +81,13 @@ void Snake::MoveLeft()
 
 bool Snake::Contains(Point& point)
 {
-  int length = 1;
+  if (HeadLocation == point)
+    return true;
   // TODO: итерация по списку точек
-  foreach (auto bodyItem : BodyWithHead)
+  for (auto p : BodyWithHead)
   {
-    if ((Point)bodyItem == point && length != BodyWithHead.Lenght)
+    if (p == point)
       return true;
-    length++;
   }
-
   return false;
 }

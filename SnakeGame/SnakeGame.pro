@@ -9,18 +9,20 @@ CONFIG += c++11
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    item.cpp \
+    apple.cpp \
+    listexensions.cpp \
     main.cpp \
     mainwindow.cpp \
+    map.cpp \
     point.cpp \
-    pointlist.cpp \
     snake.cpp
 
 HEADERS += \
-    item.h \
+    apple.h \
+    listexensions.h \
     mainwindow.h \
+    map.h \
     point.h \
-    pointlist.h \
     snake.h
 
 FORMS += \
